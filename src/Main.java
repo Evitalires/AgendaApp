@@ -3,5 +3,10 @@
 public class Main {
     public static void main(String[] args) {
 
+        Contacto contacto1 = new Contacto("sebastian", "perez", "31321321");
+        Agenda agenda1 = new Agenda();
+
+        agenda1.
+
     }
 }
