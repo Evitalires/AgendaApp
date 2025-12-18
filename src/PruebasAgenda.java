@@ -10,7 +10,7 @@ public class PruebasAgenda {
         this.sc = new Scanner(System.in); // Instanciamos el Scanner una sola vez
     }
 
-    void inicio() {
+    void iniciar() {
         System.out.println("--- Bienvenido al menú de pruebas Agenda ---");
         probarFunciones();
     }
@@ -54,9 +54,9 @@ public class PruebasAgenda {
 
                 case 2: // Existe Contacto
                     System.out.print("Ingrese nombre del contacto a verificar: ");
-                    String nomBusq = sc.nextLine();
+                    String numBusq = sc.nextLine();
                     // Generalmente se busca por nombre, o se crea un contacto temporal
-                    if (agenda.buscarContacto(nomBusq) != null) {
+                    if (agenda.buscarContacto(numBusq) != null) {
                         System.out.println("✅ El contacto SÍ existe.");
                     } else {
                         System.out.println("ℹ️ El contacto NO existe.");
@@ -66,7 +66,7 @@ public class PruebasAgenda {
                 case 3: // Listar
                     System.out.println("--- Lista de Contactos ---");
                     // Opción A: Si tu método imprime directamente:
-                    // agenda.listarContactos();
+                    //agenda.listarContactos();
 
                     // Opción B: Si devuelve una lista (recomendado):
                     List<Contacto> lista = agenda.listarContactos();
@@ -97,7 +97,8 @@ public class PruebasAgenda {
                     // Creamos un contacto temporal o buscamos para eliminar
                     Contacto aEliminar = agenda.buscarContacto(nomElim);
 
-                    if (aEliminar != null && agenda.eliminarContacto(aEliminar)) {
+                    if (aEliminar != null) {
+                        agenda.eliminarContacto(aEliminar);
                         System.out.println("🗑️ Contacto eliminado exitosamente.");
                     } else {
                         System.out.println("❌ No se pudo eliminar (no existe).");
@@ -105,11 +106,11 @@ public class PruebasAgenda {
                     break;
 
                 case 6: // Agenda Llena
-//                    if (agenda.agendaLlena()) {
-//                        System.out.println("⚠️ La agenda está LLENA.");
-//                    } else {
-//                        System.out.println("✅ Aún hay espacio en la agenda.");
-//                    }
+                    if (agenda.agendaLlena()) {
+                        System.out.println("⚠️ La agenda está LLENA.");
+                    } else {
+                        System.out.println("✅ Aún hay espacio en la agenda.");
+                    }
                     break;
 
                 case 7: // Espacios Libres
@@ -124,9 +125,6 @@ public class PruebasAgenda {
                     System.out.println("Opción no válida.");
             }
         } while (opcion != 9);
-
-        // No cerramos el Scanner aquí si planeas volver a usar System.in en otra parte del programa,
-        // pero si es el final, puedes descomentarlo:
-        // sc.close();
+        sc.close();
     }
 }

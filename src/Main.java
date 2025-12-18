@@ -3,11 +3,18 @@
 public class Main {
     public static void main(String[] args) {
 
-        Contacto contacto1 = new Contacto("sebastian", "perez", "3132132121");
         Agenda agenda1 = new Agenda();
-        //PruebasAgenda pruebasAgenda1 = new PruebasAgenda(agenda1);
-        //pruebasAgenda1.inicio();
+        Contacto contacto1 = new Contacto("sebastian", "perez", "3132132121");
+        agenda1.añadirContacto(contacto1);
 
+        // Le pasamos 'agenda1' para que la GUI trabaje sobre ella
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            AgendaGUI gui = new AgendaGUI(agenda1);
+            gui.setVisible(true);
+        });
+
+        PruebasAgenda pruebasAgenda1 = new PruebasAgenda(agenda1);
+        pruebasAgenda1.iniciar();
 
     }
 }

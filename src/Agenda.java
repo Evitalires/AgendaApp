@@ -62,11 +62,11 @@ public class Agenda {
     }
 
 
-    public void listarContactos() {
+    public List<Contacto> listarContactos() {
 
         if (contactos.isEmpty()) {
             System.out.println("La agenda está vacía");
-            return;
+            return null;
         }
 
         System.out.println("===== LISTA DE CONTACTOS =====");
@@ -74,18 +74,20 @@ public class Agenda {
             System.out.println(c.getNombre() + " " + c.getApellido() + " - " + c.getCelular()
             );
         }
+        return contactos;
     }
 
 
-    public void buscarContacto(String nombre, String apellido) {
+    public Contacto buscarContacto(String nombre) {
         for (Contacto c : contactos) {
-            if (c.getNombre().equalsIgnoreCase(nombre) &&
-                    c.getApellido().equalsIgnoreCase(apellido)) {
+            //(c.getNombre().equalsIgnoreCase(nombre) && c.getApellido().equalsIgnoreCase(apellido))
+            if (c.getNombre().equalsIgnoreCase(nombre)) {
                 System.out.println("Teléfono: " + c.getCelular());
-                return;
+                return c;
             }
         }
         System.out.println("Contacto no encontrado");
+        return null;
     }
 
 

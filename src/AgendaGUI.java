@@ -23,8 +23,8 @@ public class AgendaGUI extends JFrame {
     private static final Color TEXT_DARK = new Color(32, 33, 36);
     private static final Color TEXT_GREY = new Color(95, 99, 104);
 
-    public AgendaGUI() {
-        agenda = new Agenda(); // Instancia tu lógica
+    public AgendaGUI(Agenda agendaCompartida) {
+        this.agenda = agendaCompartida; // Instancia tu lógica
 
         setTitle("Agenda Telefónica Moderna");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -164,7 +164,7 @@ public class AgendaGUI extends JFrame {
         // Panel Izquierdo: Títulos
         JPanel titlePanel = new JPanel(new GridLayout(2, 1));
         titlePanel.setBackground(BG_COLOR);
-        JLabel title = new JLabel("Contacts Agenda");
+        JLabel title = new JLabel("Agenda de Contactoss");
         title.setFont(new Font("Segoe UI", Font.BOLD, 22));
 
         subtitleLabel = new JLabel("0 contactos");
@@ -176,7 +176,7 @@ public class AgendaGUI extends JFrame {
         JPanel buttonContainer = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 10));
         buttonContainer.setBackground(BG_COLOR);
 
-        JButton addButton = new RoundedButton("+ Add Contact");
+        JButton addButton = new RoundedButton("+ Añadir Contacto");
         addButton.setBackground(PRIMARY_BLUE);
         addButton.setForeground(Color.WHITE);
         addButton.setPreferredSize(new Dimension(150, 40)); // Fijamos un tamaño lógico
@@ -328,7 +328,7 @@ public class AgendaGUI extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new AgendaGUI().setVisible(true));
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> new AgendaGUI().setVisible(true));
+//    }
 }
