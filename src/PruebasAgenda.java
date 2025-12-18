@@ -14,26 +14,33 @@ public class PruebasAgenda {
         System.out.println("--- Bienvenido al menú de pruebas Agenda ---");
         probarFunciones();
     }
+    void mostrarMenu() {
+        System.out.println("\n--- MENÚ ---");
+        System.out.println("1. Añadir Contacto.");
+        System.out.println("2. Validar si existe contacto.");
+        System.out.println("3. Listar Contactos.");
+        System.out.println("4. Buscar Contacto por nombre.");
+        System.out.println("5. Eliminar Contacto.");
+        System.out.println("6. Consultar si la agenda está llena.");
+        System.out.println("7. Consultar espacios restantes.");
+        System.out.println("--------------------------------");
+        System.out.println("0. Mostrar Menu otra vez");
+        System.out.println("9. Salir.");
+        System.out.print("Elija una opción: ");
+    }
 
     void probarFunciones() {
         int opcion = 0;
 
         do {
-            System.out.println("\n--- MENÚ ---");
-            System.out.println("1. Añadir Contacto.");
-            System.out.println("2. Validar si existe contacto.");
-            System.out.println("3. Listar Contactos.");
-            System.out.println("4. Buscar Contacto por nombre.");
-            System.out.println("5. Eliminar Contacto.");
-            System.out.println("6. Consultar si la agenda está llena.");
-            System.out.println("7. Consultar espacios restantes.");
-            System.out.println("9. Salir.");
-            System.out.print("Elija una opción: ");
-
+            mostrarMenu();
             opcion = sc.nextInt();
             sc.nextLine(); // IMPORTANTE: Limpiar el buffer después de leer un número
 
             switch (opcion) {
+                case 0:
+                    mostrarMenu();
+                    break;
                 case 1: // Añadir
                     System.out.println("--- Añadir Contacto ---");
                     System.out.print("Ingrese nombre: ");
@@ -69,13 +76,16 @@ public class PruebasAgenda {
                     //agenda.listarContactos();
 
                     // Opción B: Si devuelve una lista (recomendado):
-                    List<Contacto> lista = agenda.listarContactos();
-                    if(lista.isEmpty()){
+                    //lista.isEmpty()
+                    System.out.println("Contactos size: " + agenda.sizeContactos());
+                    if(agenda.sizeContactos() == 0){
                         System.out.println("La agenda está vacía.");
                     } else {
-                        for(Contacto c : lista){
-                            System.out.println(c); // Usa el toString() de Contacto
-                        }
+                        List<Contacto> lista = agenda.listarContactos();
+//                        for(Contacto c : lista){
+//                            System.out.println(c); // Usa el toString() de Contacto
+//                        }
+
                     }
                     break;
 
@@ -110,11 +120,13 @@ public class PruebasAgenda {
                         System.out.println("⚠️ La agenda está LLENA.");
                     } else {
                         System.out.println("✅ Aún hay espacio en la agenda.");
+                        System.out.println("Espacios Totales: " + agenda.tamanioMaximo());
+                        System.out.println("Espacios libres disponibles: " + agenda.espaciosLibres());
                     }
                     break;
 
                 case 7: // Espacios Libres
-                    //System.out.println("Espacios libres disponibles: " + agenda.espaciosLibres());
+                    System.out.println("Espacios libres disponibles: " + agenda.espaciosLibres());
                     break;
 
                 case 9:

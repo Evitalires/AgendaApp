@@ -23,6 +23,13 @@ public class Agenda {
 
     // metodos
 
+    public int sizeContactos() {
+        return  this.contactos.size();
+    }
+    public int tamanioMaximo() {
+        return  this.tamanioMaximo;
+    }
+
     public boolean añadirContacto(Contacto c) {
 
         if (c.getNombre().isEmpty() || c.getApellido().isEmpty()) {
@@ -69,11 +76,12 @@ public class Agenda {
             return null;
         }
 
-        System.out.println("===== LISTA DE CONTACTOS =====");
+        System.out.println("\n===== LISTA DE CONTACTOS =====");
         for (Contacto c : contactos) {
             System.out.println(c.getNombre() + " " + c.getApellido() + " - " + c.getCelular()
             );
         }
+        System.out.println("Tamano contactos: " + contactos.size());
         return contactos;
     }
 
