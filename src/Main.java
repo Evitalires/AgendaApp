@@ -5,8 +5,8 @@ public class Main {
 
         Contacto contacto1 = new Contacto("sebastian", "perez", "3132132121");
         Agenda agenda1 = new Agenda();
-        PruebasAgenda pruebasAgenda1 = new PruebasAgenda(agenda1);
-        pruebasAgenda1.inicio();
+        //PruebasAgenda pruebasAgenda1 = new PruebasAgenda(agenda1);
+        //pruebasAgenda1.inicio();
 
 
     }

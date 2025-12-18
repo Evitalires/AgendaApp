@@ -1,130 +1,54 @@
+// Archivo: Agenda.java
 import java.util.ArrayList;
+import java.util.List;
 
 public class Agenda {
-
-    public ArrayList<Contacto> contactos;
-    public int tamanioMaximo;
+    private List<Contacto> contactos;
 
     public Agenda() {
-        this.tamanioMaximo = 10;
-        this.contactos = new ArrayList<>(tamanioMaximo);
+        this.contactos = new ArrayList<>();
+        // Datos de prueba para que se vea bonito al iniciar
+        contactos.add(new Contacto("Sarah", "Johnson", "3001234567"));
+        contactos.add(new Contacto("Michael", "Chen", "3109876543"));
     }
 
-    public Agenda(int tamanioMaximo) {
-        this.tamanioMaximo = tamanioMaximo;
-        this.contactos = new ArrayList<>(tamanioMaximo);
-    }
-
-
-    //=====  metodos =======
-
-
-    public void añadirContacto(Contacto c) {
-
-        if (contactos.size() >= tamanioMaximo) {
-            System.out.println("La agenda está llena");
-            return;
+    public boolean añadirContacto(Contacto c) {
+        if (buscarContacto(c.getNombre()) == null && !c.getCelular().equals("Error")) {
+            contactos.add(c);
+            return true;
         }
+        return false;
+    }
 
-        for (Contacto contacto : contactos) {
-            if (contacto.getNombre().equalsIgnoreCase(c.getNombre())) {
-                System.out.println("El contacto ya existe");
-                return;
+    public Contacto buscarContacto(String nombre) {
+        for (Contacto c : contactos) {
+            if (c.getNombre().equalsIgnoreCase(nombre)) {
+                return c;
             }
         }
-
-        contactos.add(c);
-        System.out.println("Contacto agregado correctamente");
+        return null; // No encontrado
     }
 
-    public void existeContacto(String nuevoContacto) {
-        for (Contacto contacto : contactos) {
-            if (contacto.getNombre().equalsIgnoreCase(nuevoContacto)) {
-                System.out.println("El contacto existe");
-                return;
-            }
+    public List<Contacto> listarContactos() {
+        return contactos;
+    }
+
+    public boolean eliminarContacto(Contacto c) {
+        // Buscamos por nombre para eliminar (simplificado)
+        Contacto aEliminar = buscarContacto(c.getNombre());
+        if (aEliminar != null) {
+            contactos.remove(aEliminar);
+            return true;
         }
-        System.out.println("El contacto NO existe");
+        return false;
     }
 
-    public void listarContactos() {
-
-        if (contactos.isEmpty()) {
-            System.out.println("La agenda está vacía");
-            return;
+    public boolean modificarTelefono(String nombre, String apellido, String nuevoCelular) {
+        Contacto c = buscarContacto(nombre);
+        if (c != null) {
+            c.setCelular(nuevoCelular);
+            return true; // Asumimos éxito si existe
         }
-
-        System.out.println(" ===== Lista de contactos: =====");
-
-        for (Contacto contacto : contactos) {
-            System.out.println("Nombre: " + contacto.getNombre() + contacto.getApellido()+ " Celular: " + contacto.getCelular()
-            );
-        }
+        return false;
     }
-
-    public void buscarContacto(String nombreContacto) {
-        for (Contacto contacto : contactos) {
-            if (contacto.getNombre().equalsIgnoreCase(nombreContacto)) {
-                System.out.println("Contacto encontrado: " + contacto.getNombre());
-                return;
-            }
-        }
-        System.out.println("El contacto no existe");
-    }
-
-    public void eliminarContacto(String nombre) {
-        for (int i = 0; i < contactos.size(); i++) {
-            if (contactos.get(i).getNombre().equalsIgnoreCase(nombre)) {
-                contactos.remove(i);
-                System.out.println("Contacto eliminado correctamente");
-                return;
-            }
-        }
-        System.out.println("El contacto no existe");
-    }
-
-    public void modificarTelefono(String nombre, String nuevoTelefono) {
-        for (Contacto contacto : contactos) {
-            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
-                contacto.setCelular(nuevoTelefono);
-                System.out.println("Teléfono actualizado correctamente");
-                return;
-            }
-        }
-        System.out.println("El contacto no existe");
-    }
-
-    public void agendaLlena() {
-        if (contactos.size() >= tamanioMaximo) {
-            System.out.println("La agenda está llena");
-        } else {
-            System.out.println("La agenda NO está llena");
-        }
-    }
-
-    public void espaciosLibres() {
-        int espacios = tamanioMaximo - contactos.size();
-        System.out.println("Espacios libres: " + espacios);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
